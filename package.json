@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "start": "ts-node-dev --no-notify src/server.ts"
+    "start": "ts-node-dev --no-notify src/server.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "Mark Doyle",

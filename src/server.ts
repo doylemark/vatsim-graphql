@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import * as sentry from "@sentry/node";
 import { ApolloServer } from "apollo-server-express";
 import * as dotenv from "dotenv";

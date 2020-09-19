@@ -23,7 +23,7 @@ const store: Store = {
   atis: [],
 };
 
-(async () => {
+const updateData = async () => {
   try {
     const response = await fetch(
       "http://cluster.data.vatsim.net/v3/vatsim-data.json",
@@ -36,6 +36,11 @@ const store: Store = {
   } catch (error) {
     sentry.captureException(error);
   }
+};
+
+(() => {
+  updateData();
+  setInterval(async () => updateData(), 10000);
 })();
 
 export default store;
