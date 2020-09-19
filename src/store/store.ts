@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import * as sentry from "@sentry/node";
 
 import FlightPlan from "../types/flightplan";
 import ApiResponse from "../types/api";
@@ -33,7 +34,7 @@ const store: Store = {
     store.controllers = data.controllers;
     store.atis = data.atis;
   } catch (error) {
-    console.log(error);
+    sentry.captureException(error);
   }
 })();
 
