@@ -1,10 +1,11 @@
 import fetch from "node-fetch";
-import flightplans from "./flightplans";
 
 import FlightPlan from "../types/flightplan";
 import ApiResponse from "../types/api";
 import Pilot from "../types/pilot";
 import Controller from "../types/controller";
+
+import flightplans from "./flightplans";
 
 export interface Store {
   flightplans: FlightPlan[];
