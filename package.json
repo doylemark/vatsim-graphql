@@ -1,11 +1,16 @@
 {
   "name": "vatsim-hermes",
   "version": "1.0.0",
-  "description": "",
+  "description": "GraphQL API for VATSIM",
+  "repository": {
+    "url": "https://github.com/doylemark/vatsim-hermes/"
+  },
   "main": "app.ts",
   "scripts": {
-    "start": "ts-node-dev --no-notify src/server.ts",
-    "build": "tsc"
+    "dev": "ts-node-dev --no-notify src/server.ts",
+    "build": "tsc ./src/server.ts --outDir ./dist --esModuleInterop",
+    "docker:build": "docker build -t markdoyle/vatsim-hermes .",
+    "docker:run": "docker run -p 3000:3000 -d markdoyle/vatsim-hermes"
   },
   "keywords": [],
   "author": "Mark Doyle",
