@@ -5,6 +5,8 @@ import {
   pilot,
   controllers,
   controller,
+  atiservice,
+  atiservices,
 } from "./resolvers";
 
 const resolvers = {
@@ -15,6 +17,8 @@ const resolvers = {
     flightplan,
     pilots,
     pilot,
+    atiservice,
+    atiservices,
   },
 };
 

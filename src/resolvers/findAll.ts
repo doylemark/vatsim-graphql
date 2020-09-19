@@ -4,7 +4,7 @@ const findAll = (type: keyof Store) => {
   if (store[type]) {
     return store[type];
   }
-
+  console.log("found");
   return [];
 };
 
