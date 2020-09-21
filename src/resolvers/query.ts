@@ -7,6 +7,7 @@ import {
   controller,
   atiservice,
   atiservices,
+  streams,
 } from "./resolvers";
 
 const resolvers = {
@@ -19,6 +20,7 @@ const resolvers = {
     pilot,
     atiservice,
     atiservices,
+    streams,
   },
 };
 

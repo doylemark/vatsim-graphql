@@ -10,6 +10,7 @@ const query = gql`
     controller(callsign: String!): Controller
     atiservices: [Atis] 
     atiservice(callsign: String!): Atis
+    streams: [Stream]
   }
 `;
 

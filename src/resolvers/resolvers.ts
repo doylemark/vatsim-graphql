@@ -14,6 +14,7 @@ interface Args {
 export const flightplans = () => findAll("flightplans");
 export const pilots = () => findAll("pilots");
 export const controllers = () => findAll("controllers");
+export const streams = () => findAll("streams");
 export const atiservices = () => findAll("atis");
 
 export const flightplan = (_: null, {
