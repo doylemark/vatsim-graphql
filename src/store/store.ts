@@ -6,6 +6,8 @@ import ApiResponse from "../types/api";
 import Pilot from "../types/pilot";
 import Controller from "../types/controller";
 import Atis from "../types/atis";
+import Stream from "../types/stream";
+import getStreams from "../twitch";
 
 import flightplans from "./flightplans";
 
@@ -14,6 +16,7 @@ export interface Store {
   pilots: Pilot[];
   controllers: Controller[];
   atis: Atis[];
+  streams: Stream[];
 }
 
 const store: Store = {
@@ -21,6 +24,7 @@ const store: Store = {
   pilots: [],
   controllers: [],
   atis: [],
+  streams: [],
 };
 
 const updateData = async () => {
@@ -33,6 +37,7 @@ const updateData = async () => {
     store.pilots = data.pilots;
     store.controllers = data.controllers;
     store.atis = data.atis;
+    store.streams = await getStreams();
   } catch (error) {
     sentry.captureException(error);
   }
