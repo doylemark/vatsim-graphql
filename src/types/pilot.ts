@@ -1,4 +1,4 @@
-import FlightPlan from "./flightplan";
+import FlightPlan, { RawFlightPlan } from "./flightplan";
 
 export default interface Pilot {
   cid: number;
@@ -17,3 +17,5 @@ export default interface Pilot {
   logon_time: string;
   last_updated: string;
 }
+
+export type RawPilot = Omit<Pilot, "flight_plan"> & {flight_plan: RawFlightPlan};
