@@ -4,8 +4,8 @@ import { RawPilot } from "../types/pilot";
 import Prefile from "../types/prefile";
 
 const airports = async ({ flight_plan: target }: RawPilot | Prefile) => {
-  let departureAirport: Airport| undefined;
-  let arrivalAirport: Airport| undefined;
+  let departureAirport: Airport | undefined;
+  let arrivalAirport: Airport | undefined;
 
   if (target?.departure) {
     departureAirport = await getAirport(target.departure);

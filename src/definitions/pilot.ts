@@ -6,8 +6,8 @@ const pilot = gql`
     name: String
     callsign: String
     server: String
-    latitude: Int
-    longitude: Int
+    latitude: Float
+    longitude: Float
     altitude: Int
     groundspeed: Int
     transponder: Int
