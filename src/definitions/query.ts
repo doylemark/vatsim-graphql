@@ -11,6 +11,7 @@ const query = gql`
     atiservices: [Atis] 
     atiservice(callsign: String!): Atis
     streams: [Stream]
+    airport(icao: String!): Airport
   }
 `;
 

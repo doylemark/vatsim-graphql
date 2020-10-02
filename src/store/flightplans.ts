@@ -1,19 +1,38 @@
 import ApiResponse from "../types/api";
+import FlightPlan from "../types/flightplan";
 
-const flightplans = (data: ApiResponse) => {
-  const prefiles = data.prefiles.map((prefile) => ({
-    ...prefile.flight_plan,
-    callsign: prefile.callsign,
-    isPrefile: true,
-  }));
+import airports from "./airport";
 
-  const pilotPlans = data.pilots.map((pilot) => ({
-    ...pilot.flight_plan,
-    callsign: pilot.callsign,
-    isPrefile: false,
-  }));
+const flightplans = async (data: ApiResponse): Promise<FlightPlan[]> => {
+  const pilotPlans = await Promise.all(
+    data.pilots.map(async (pilot) => {
+      const { departureAirport, arrivalAirport } = await airports(pilot);
 
-  return [...prefiles, ...pilotPlans];
+      return {
+        ...pilot.flight_plan,
+        callsign: pilot.callsign,
+        isPrefile: false,
+        departureAirport,
+        arrivalAirport,
+      };
+    }),
+  );
+
+  const prefiles = await Promise.all(
+    data.prefiles.map(async (prefile) => {
+      const { departureAirport, arrivalAirport } = await airports(prefile);
+
+      return {
+        ...prefile.flight_plan,
+        callsign: prefile.callsign,
+        isPrefile: true,
+        departureAirport,
+        arrivalAirport,
+      };
+    }),
+  );
+
+  return [...pilotPlans, ...prefiles];
 };
 
 export default flightplans;
