@@ -10,6 +10,7 @@ import Stream from "../types/stream";
 import getStreams from "../twitch";
 
 import flightplans from "./flightplans";
+import pilots from "./pilots";
 
 export interface Store {
   flightplans: FlightPlan[];
@@ -33,8 +34,8 @@ const updateData = async () => {
       "http://cluster.data.vatsim.net/v3/vatsim-data.json",
     );
     const data: ApiResponse = await response.json();
-    store.flightplans = flightplans(data);
-    store.pilots = data.pilots;
+    store.flightplans = await flightplans(data);
+    store.pilots = await pilots(data);
     store.controllers = data.controllers;
     store.atis = data.atis;
     store.streams = await getStreams();

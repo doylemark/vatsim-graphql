@@ -1,10 +1,10 @@
 import Atis from "./atis";
 import Controller from "./controller";
-import Pilot from "./pilot";
+import { RawPilot } from "./pilot";
 import Prefile from "./prefile";
 
 export default interface ApiResponse {
-  pilots: Pilot[];
+  pilots: RawPilot[];
   controllers: Controller[];
   atis: Atis[];
   prefiles: Prefile[];

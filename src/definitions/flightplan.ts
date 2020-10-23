@@ -5,7 +5,9 @@ const flightplan = gql`
     flight_rules: String
     aircraft: String
     departure: String
+    departureAirport: Airport
     arrival: String
+    arrivalAirport: Airport
     alternate: String
     cruise_tas: String
     altitude: String
@@ -15,7 +17,7 @@ const flightplan = gql`
     remarks: String
     route: String
     isPrefile: Boolean!
-    callsign: String!
+    callsign: String
   }
 `;
 
