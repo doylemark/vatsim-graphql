@@ -10,7 +10,7 @@
     "dev": "ts-node-dev --no-notify src/server.ts",
     "build": "tsc ./src/server.ts --outDir ./dist --esModuleInterop",
     "docker:build": "docker build -t markdoyle/vatsim-hermes .",
-    "docker:run": "docker run -p 3000:3000 -d markdoyle/vatsim-hermes"
+    "docker:run": "docker run -p 80:3000 -d markdoyle/vatsim-hermes"
   },
   "keywords": [
     "vatsim",
