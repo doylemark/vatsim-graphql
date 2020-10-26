@@ -39,7 +39,6 @@ const updateData = async () => {
     store.controllers = data.controllers;
     store.atis = data.atis;
     store.streams = await getStreams();
-    console.log("Updated Store");
   } catch (error) {
     sentry.captureException(error);
     console.log("Error updating Store");
