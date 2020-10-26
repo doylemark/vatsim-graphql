@@ -4,9 +4,7 @@ export default interface FlightPlan {
   flight_rules: string;
   aircraft: string;
   departure: string;
-  departureAirport: Airport | undefined;
   arrival: string;
-  arrivalAirport: Airport | undefined
   alternate: string;
   cruise_tas: string;
   altitude: string;
