@@ -4,11 +4,8 @@ const findOne = <T extends { callsign: string }>(data: T[], callsign: string) =>
   }
 
   const result = data.find((item) => item.callsign === callsign);
-  if (result) {
-    return result;
-  }
 
-  return null;
+  return result || null;
 };
 
 export default findOne;

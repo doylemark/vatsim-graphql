@@ -1,12 +1,9 @@
 import express from "express";
 import * as sentry from "@sentry/node";
 import { ApolloServer } from "apollo-server-express";
-import * as dotenv from "dotenv";
 
 import resolvers from "./resolvers";
 import definitions from "./definitions";
-
-dotenv.config();
 
 const PORT = 3000;
 const dsn = process.env.SENTRY_DSN;

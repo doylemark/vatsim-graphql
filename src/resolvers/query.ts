@@ -1,3 +1,5 @@
+import { getAirport } from "../db/db";
+
 import {
   flightplans,
   flightplan,
@@ -21,6 +23,7 @@ const resolvers = {
     atiservice,
     atiservices,
     streams,
+    airport: getAirport,
   },
 };
 
