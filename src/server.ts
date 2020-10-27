@@ -16,8 +16,8 @@ const app = express();
 app.use(cors());
 
 const server = new ApolloServer({ typeDefs: definitions, resolvers });
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, path: "/" });
 
-app.listen({ port: PORT, path: "/api" }, () => {
+app.listen(PORT, () => {
   console.log(`🚀  http://localhost:${PORT}${server.graphqlPath}`);
 });
