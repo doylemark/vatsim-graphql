@@ -6,23 +6,18 @@ Example query:
 
 ```gql
 query {
-    pilots {
-      name
-      callsign
-      flight_plan {
-        aircraft
-        route
-        departureAirport {
-          icao
-          lat
-          lon
-        }
-        arrivalAirport {
-          icao
-          lat
-          lon
-        }
-      }
+  airport(icao: "EIDW") {
+    lat
+    lon
+    iata
+  }
+  pilots {
+    name
+    callsign
+    flight_plan {
+      aircraft
+      route
     }
   }
+}
 ```
