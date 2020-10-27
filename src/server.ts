@@ -1,6 +1,3 @@
-import https from "https";
-import fs from "fs";
-
 import express from "express";
 import * as sentry from "@sentry/node";
 import { ApolloServer } from "apollo-server-express";
@@ -21,11 +18,6 @@ app.use(cors());
 const server = new ApolloServer({ typeDefs: definitions, resolvers });
 server.applyMiddleware({ app });
 
-const httpsServer = https.createServer({
-  key: fs.readFileSync("/etc/letsencrypt/live/vatsim-graphql.xyz/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/vatsim-graphql.xyz/fullchain.pem"),
-}, app);
-
-httpsServer.listen(443, () => {
+app.listen({ port: PORT, path: "/api" }, () => {
   console.log(`🚀  http://localhost:${PORT}${server.graphqlPath}`);
 });
