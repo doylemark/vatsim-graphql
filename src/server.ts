@@ -1,3 +1,6 @@
+import https from "https";
+import fs from "fs";
+
 import express from "express";
 import * as sentry from "@sentry/node";
 import { ApolloServer } from "apollo-server-express";
@@ -18,6 +21,11 @@ app.use(cors());
 const server = new ApolloServer({ typeDefs: definitions, resolvers });
 server.applyMiddleware({ app });
 
-app.listen(PORT, () => {
+const httpsServer = https.createServer({
+  key: fs.readFileSync("/etc/letsencrypt/live/my_api_url/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/my_api_url/fullchain.pem"),
+}, app);
+
+httpsServer.listen(443, () => {
   console.log(`🚀  http://localhost:${PORT}${server.graphqlPath}`);
 });
