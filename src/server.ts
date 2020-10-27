@@ -22,8 +22,8 @@ const server = new ApolloServer({ typeDefs: definitions, resolvers });
 server.applyMiddleware({ app });
 
 const httpsServer = https.createServer({
-  key: fs.readFileSync("/etc/letsencrypt/live/my_api_url/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/my_api_url/fullchain.pem"),
+  key: fs.readFileSync("/etc/letsencrypt/live/vatsim-graphql.xyz/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/vatsim-graphql.xyz/fullchain.pem"),
 }, app);
 
 httpsServer.listen(443, () => {
