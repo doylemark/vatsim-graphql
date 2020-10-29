@@ -16,6 +16,7 @@ export const pilots = () => findAll("pilots");
 export const controllers = () => findAll("controllers");
 export const streams = () => findAll("streams");
 export const atiservices = () => findAll("atis");
+export const events = () => findAll("events");
 
 export const flightplan = (_: null, {
   callsign,

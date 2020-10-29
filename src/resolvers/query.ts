@@ -10,6 +10,7 @@ import {
   atiservice,
   atiservices,
   streams,
+  events,
 } from "./resolvers";
 
 const resolvers = {
@@ -24,6 +25,7 @@ const resolvers = {
     atiservices,
     streams,
     airport: getAirport,
+    events,
   },
 };
 

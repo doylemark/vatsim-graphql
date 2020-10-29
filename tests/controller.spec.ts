@@ -1,7 +1,6 @@
 import { gql } from "apollo-server-express";
 import fetch from "node-fetch";
 
-import Airport from "../src/types/airport";
 import ApiResponse from "../src/types/api";
 import Atis from "../src/types/atis";
 
