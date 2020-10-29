@@ -1,16 +1,16 @@
 {
-  "name": "vatsim-hermes",
+  "name": "vatsim-graphql",
   "version": "1.0.0",
   "description": "GraphQL API for VATSIM",
   "repository": {
-    "url": "https://github.com/doylemark/vatsim-hermes/"
+    "url": "https://github.com/doylemark/vatsim-graphql/"
   },
   "main": "app.ts",
   "scripts": {
     "start": "ts-node-dev --no-notify src/server.ts --ignore-watch /tests",
     "build": "tsc ./src/server.ts --outDir ./dist --esModuleInterop",
-    "docker:build": "docker build -t markdoyle/vatsim-hermes .",
-    "docker:run": "docker run -p 80:3000 -d markdoyle/vatsim-hermes",
+    "docker:build": "docker build -t markdoyle/vatsim-graphql .",
+    "docker:run": "docker run -p 80:3000 -d markdoyle/vatsim-graphql",
     "test": "jest --runInBand --config jest.config.json"
   },
   "keywords": [
@@ -37,7 +37,6 @@
     "eslint-plugin-import": "^2.22.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.3",
-    "graphql-tag": "^2.11.0",
     "monk": "^7.3.2",
     "node-fetch": "^2.6.1",
     "ts-node-dev": "^1.0.0-pre.62",
