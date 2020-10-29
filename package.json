@@ -7,7 +7,7 @@
   },
   "main": "app.ts",
   "scripts": {
-    "start": "ts-node-dev --no-notify src/server.ts --ignore-watch /tests",
+    "start": "ts-node-dev --no-notify --inspect -- src/server.ts --ignore-watch /tests",
     "build": "tsc ./src/server.ts --outDir ./dist --esModuleInterop",
     "docker:build": "docker build -t markdoyle/vatsim-graphql .",
     "docker:run": "docker run -p 80:3000 -d markdoyle/vatsim-graphql",

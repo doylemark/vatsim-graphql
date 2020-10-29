@@ -20,6 +20,7 @@
     "import/order": ["error", { "newlines-between": "always" }],
     "consistent-return": 0,
     "import/prefer-default-export": 0,
-    "implicit-arrow-linebreak": 0
+    "implicit-arrow-linebreak": 0,
+    "no-restricted-syntax": 0,
   }
 }

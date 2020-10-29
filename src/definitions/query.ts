@@ -12,7 +12,7 @@ const query = gql`
     atiservice(callsign: String!): Atis
     streams: [Stream]
     airport(icao: String!): Airport
-    events: [Event]
+    eventCalendar: [EventCollection]
   }
 `;
 

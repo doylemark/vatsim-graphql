@@ -12,3 +12,8 @@ export default interface Event {
   description: string;
   banner: string;
 }
+
+export interface EventCollection {
+  date: string;
+  events: Event[];
+}

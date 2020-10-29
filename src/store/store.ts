@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import * as sentry from "@sentry/node";
-import { updateTaggedTemplate } from "typescript";
 
 import FlightPlan from "../types/flightplan";
 import ApiResponse from "../types/api";
@@ -9,8 +8,9 @@ import Controller from "../types/controller";
 import Atis from "../types/atis";
 import Stream from "../types/stream";
 import getStreams from "../twitch";
-import Event from "../types/event";
+import Event, { EventCollection } from "../types/event";
 
+import events from "./events";
 import flightplans from "./flightplans";
 import pilots from "./pilots";
 
@@ -20,7 +20,7 @@ export interface Store {
   controllers: Controller[];
   atis: Atis[];
   streams: Stream[];
-  events: Event[];
+  events: EventCollection[];
 }
 
 const store: Store = {
@@ -57,7 +57,7 @@ const updateData = async () => {
   try {
     const response = await fetch("https://my.vatsim.net/api/events/all");
     const { data }: EventsResponse = await response.json();
-    store.events = data;
+    store.events = events(data);
   } catch (error) {
     sentry.captureException(error);
     console.log("Error updating Events");
@@ -65,8 +65,9 @@ const updateData = async () => {
 };
 
 (() => {
-  updateVolatileData();
   updateData();
+  updateVolatileData();
+
   setInterval(async () => updateVolatileData(), 10000);
   setInterval(async () => updateData(), 60000);
 })();

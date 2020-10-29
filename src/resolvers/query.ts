@@ -25,7 +25,7 @@ const resolvers = {
     atiservices,
     streams,
     airport: getAirport,
-    events,
+    eventCalendar: events,
   },
 };
 

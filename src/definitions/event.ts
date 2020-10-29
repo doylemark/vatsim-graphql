@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-const airport = gql`
+const event = gql`
   type Event {
     id: Int
     type: String!
@@ -15,6 +15,11 @@ const airport = gql`
     description: String!
     banner: String!
   }
+
+  type EventCollection {
+    date: String!
+    events: [Event]
+  }
 `;
 
-export default airport;
+export default event;
