@@ -1,6 +1,6 @@
 # vatsim-graphql
 
-vatsim-graphql, a GraphQL API for VATSIM. Written in TypeScript with Express & Apollo
+GraphQL API for VATSIM. Written in TypeScript with Express & Apollo
 Copyright (C) 2020  Mark Doyle
 
 This program is free software; you can redistribute it and/or modify
