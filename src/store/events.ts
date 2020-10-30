@@ -12,9 +12,9 @@ const events = (evs: Event[]) => {
     });
 
     if (dateExists < 0) {
-      filtered.push({ date: event.start_time.slice(0, 10), events: [event] });
+      filtered.push({ date: event.start_time.slice(0, 10), data: [event] });
     } else {
-      filtered[dateExists].events.push(event);
+      filtered[dateExists].data.push(event);
     }
   }
 

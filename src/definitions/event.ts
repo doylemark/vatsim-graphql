@@ -18,7 +18,7 @@ const event = gql`
 
   type EventCollection {
     date: String!
-    events: [Event]
+    data: [Event]
   }
 `;
 

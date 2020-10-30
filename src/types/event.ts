@@ -15,5 +15,5 @@ export default interface Event {
 
 export interface EventCollection {
   date: string;
-  events: Event[];
+  data: Event[];
 }
