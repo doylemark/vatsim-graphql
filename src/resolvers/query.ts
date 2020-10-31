@@ -1,8 +1,8 @@
 import { getAirport } from "../db/db";
 
 import {
-  flightplans,
-  flightplan,
+  prefiles,
+  prefile,
   pilots,
   pilot,
   controllers,
@@ -15,8 +15,8 @@ const resolvers = {
   Query: {
     controllers,
     controller,
-    flightplans,
-    flightplan,
+    prefiles,
+    prefile,
     pilots,
     pilot,
     streams,

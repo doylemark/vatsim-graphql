@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-import Auth from "../types/auth";
+import Auth from "../../types/auth";
 
 const fetchToken = async () => {
   const ID = process.env.TWITCH_CLIENT_ID;
