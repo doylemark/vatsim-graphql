@@ -7,8 +7,6 @@ import {
   pilot,
   controllers,
   controller,
-  atiservice,
-  atiservices,
   streams,
   events,
 } from "./resolvers";
@@ -21,8 +19,6 @@ const resolvers = {
     flightplan,
     pilots,
     pilot,
-    atiservice,
-    atiservices,
     streams,
     airport: getAirport,
     eventCalendar: events,

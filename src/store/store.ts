@@ -5,7 +5,6 @@ import FlightPlan from "../types/flightplan";
 import ApiResponse from "../types/api";
 import Pilot from "../types/pilot";
 import Controller from "../types/controller";
-import Atis from "../types/atis";
 import Stream from "../types/stream";
 import getStreams from "../twitch";
 import Event, { EventCollection } from "../types/event";
@@ -18,7 +17,6 @@ export interface Store {
   flightplans: FlightPlan[];
   pilots: Pilot[];
   controllers: Controller[];
-  atis: Atis[];
   streams: Stream[];
   events: EventCollection[];
 }
@@ -27,7 +25,6 @@ const store: Store = {
   flightplans: [],
   pilots: [],
   controllers: [],
-  atis: [],
   streams: [],
   events: [],
 };
@@ -40,8 +37,7 @@ const updateVolatileData = async () => {
     const data: ApiResponse = await response.json();
     store.flightplans = flightplans(data);
     store.pilots = pilots(data);
-    store.controllers = data.controllers;
-    store.atis = data.atis;
+    store.controllers = [...data.controllers, ...data.atis];
     store.streams = await getStreams();
   } catch (error) {
     sentry.captureException(error);
