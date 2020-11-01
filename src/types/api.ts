@@ -6,6 +6,6 @@ import Prefile from "./prefile";
 export default interface ApiResponse {
   pilots: RawPilot[];
   controllers: Controller[];
-  atis: Atis[];
+  atis: Controller[];
   prefiles: Prefile[];
 }

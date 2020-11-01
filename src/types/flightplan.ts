@@ -1,6 +1,4 @@
-import Airport from "./airport";
-
-export default interface FlightPlan {
+export default interface Flightplan {
   flight_rules: string;
   aircraft: string;
   departure: string;
@@ -16,5 +14,3 @@ export default interface FlightPlan {
   isPrefile: boolean;
   callsign: string;
 }
-
-export type RawFlightPlan = Omit<FlightPlan, "isPrefile" | "callsign" | "departureAirport" | "arrivalAirport">;

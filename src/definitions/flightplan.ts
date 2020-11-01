@@ -14,8 +14,6 @@ const flightplan = gql`
     fuel_time: String
     remarks: String
     route: String
-    isPrefile: Boolean!
-    callsign: String
   }
 `;
 

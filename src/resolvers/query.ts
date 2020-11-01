@@ -1,31 +1,28 @@
-import { getAirport } from "../db/db";
-
+import airport from "./airport";
 import {
-  flightplans,
-  flightplan,
+  prefiles,
+  prefile,
   pilots,
   pilot,
   controllers,
   controller,
-  atiservice,
-  atiservices,
   streams,
   events,
+  airports,
 } from "./resolvers";
 
 const resolvers = {
   Query: {
     controllers,
     controller,
-    flightplans,
-    flightplan,
+    prefiles,
+    prefile,
     pilots,
     pilot,
-    atiservice,
-    atiservices,
     streams,
-    airport: getAirport,
     eventCalendar: events,
+    airport,
+    airports,
   },
 };
 

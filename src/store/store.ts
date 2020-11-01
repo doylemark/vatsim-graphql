@@ -1,35 +1,34 @@
 import fetch from "node-fetch";
 import * as sentry from "@sentry/node";
 
-import FlightPlan from "../types/flightplan";
 import ApiResponse from "../types/api";
 import Pilot from "../types/pilot";
 import Controller from "../types/controller";
-import Atis from "../types/atis";
 import Stream from "../types/stream";
-import getStreams from "../twitch";
+import getStreams from "../data/twitch";
 import Event, { EventCollection } from "../types/event";
+import Prefile from "../types/prefile";
+import { AllAirport } from "../types/airport";
 
 import events from "./events";
-import flightplans from "./flightplans";
-import pilots from "./pilots";
+import airports from "./airports";
 
 export interface Store {
-  flightplans: FlightPlan[];
+  prefiles: Prefile[];
   pilots: Pilot[];
   controllers: Controller[];
-  atis: Atis[];
   streams: Stream[];
   events: EventCollection[];
+  airports: AllAirport [];
 }
 
 const store: Store = {
-  flightplans: [],
+  prefiles: [],
   pilots: [],
   controllers: [],
-  atis: [],
   streams: [],
   events: [],
+  airports: [],
 };
 
 const updateVolatileData = async () => {
@@ -38,14 +37,14 @@ const updateVolatileData = async () => {
       "http://cluster.data.vatsim.net/v3/vatsim-data.json",
     );
     const data: ApiResponse = await response.json();
-    store.flightplans = flightplans(data);
-    store.pilots = pilots(data);
-    store.controllers = data.controllers;
-    store.atis = data.atis;
+    store.prefiles = data.prefiles;
+    store.pilots = data.pilots;
+    store.controllers = [...data.controllers, ...data.atis];
     store.streams = await getStreams();
+    store.airports = await airports([...data.controllers, ...data.atis], data.pilots);
   } catch (error) {
     sentry.captureException(error);
-    console.log("Error updating Store");
+    console.log("Error updating Store", error);
   }
 };
 

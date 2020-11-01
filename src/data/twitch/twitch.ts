@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import * as sentry from "@sentry/node";
 
-import Stream from "../types/stream";
+import Stream from "../../types/stream";
 
 import fetchToken, { isExpired } from "./auth";
 
