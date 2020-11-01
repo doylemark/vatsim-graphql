@@ -8,4 +8,6 @@ import event from "./event";
 import metar from "./metar";
 import flightplan from "./flightplan";
 
-export default [query, pilot, controller, stream, airport, event, metar, prefile, flightplan];
+export default [
+  query, pilot, controller, stream, airport, event, metar, prefile, flightplan, airport,
+];

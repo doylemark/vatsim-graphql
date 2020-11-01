@@ -1,17 +1,17 @@
 import fetch from "node-fetch";
 import * as sentry from "@sentry/node";
 
-
 import ApiResponse from "../types/api";
 import Pilot from "../types/pilot";
 import Controller from "../types/controller";
 import Stream from "../types/stream";
 import getStreams from "../data/twitch";
 import Event, { EventCollection } from "../types/event";
+import Prefile from "../types/prefile";
+import { AllAirport } from "../types/airport";
 
 import events from "./events";
-import pilots from "./pilots";
-import Prefile from "../types/prefile";
+import airports from "./airports";
 
 export interface Store {
   prefiles: Prefile[];
@@ -19,6 +19,7 @@ export interface Store {
   controllers: Controller[];
   streams: Stream[];
   events: EventCollection[];
+  airports: AllAirport [];
 }
 
 const store: Store = {
@@ -27,6 +28,7 @@ const store: Store = {
   controllers: [],
   streams: [],
   events: [],
+  airports: [],
 };
 
 const updateVolatileData = async () => {
@@ -36,12 +38,13 @@ const updateVolatileData = async () => {
     );
     const data: ApiResponse = await response.json();
     store.prefiles = data.prefiles;
-    store.pilots = pilots(data);
+    store.pilots = data.pilots;
     store.controllers = [...data.controllers, ...data.atis];
     store.streams = await getStreams();
+    store.airports = await airports([...data.controllers, ...data.atis], data.pilots);
   } catch (error) {
     sentry.captureException(error);
-    console.log("Error updating Store");
+    console.log("Error updating Store", error);
   }
 };
 

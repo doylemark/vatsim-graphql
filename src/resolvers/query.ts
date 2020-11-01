@@ -1,5 +1,4 @@
-import { getAirport } from "../db/db";
-
+import airport from "./airport";
 import {
   prefiles,
   prefile,
@@ -9,6 +8,7 @@ import {
   controller,
   streams,
   events,
+  airports,
 } from "./resolvers";
 
 const resolvers = {
@@ -20,8 +20,9 @@ const resolvers = {
     pilots,
     pilot,
     streams,
-    airport: getAirport,
     eventCalendar: events,
+    airport,
+    airports,
   },
 };
 

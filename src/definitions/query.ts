@@ -9,7 +9,9 @@ const query = gql`
     controllers: [Controller]
     controller(callsign: String!): Controller
     streams: [Stream]
-    airport(icao: String!): Airport
+    airport(icao: String!): SingleAirport
+    airports: [Airport]
+    onlineAirports(icao: String!): [Airport]
     eventCalendar: [EventCollection]
   }
 `;
