@@ -59,7 +59,7 @@ const updateData = async () => {
     store.events = events(data);
   } catch (error) {
     sentry.captureException(error);
-    console.log("Error updating Events");
+    console.log("Error updating non-volatile store data");
   }
 };
 

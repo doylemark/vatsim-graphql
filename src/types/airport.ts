@@ -3,7 +3,7 @@ import Metar from "./metar";
 import Pilot from "./pilot";
 
 export default interface Airport {
-  icao: string | null;
+  icao: string;
   iata: string | null;
   name: string | null;
   city: string | null;
