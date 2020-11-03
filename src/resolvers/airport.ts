@@ -15,24 +15,27 @@ const findControllers = (icao: string) => store.controllers.filter((controller) 
 
 const airport = async (_: null, {
   icao,
-}: { icao: string }): Promise<SingleAirport> => {
+}: { icao: string }): Promise<SingleAirport | undefined> => {
   const airportData = await getAirport(icao);
+  if (airportData) {
+    const [arrivals, departures] = findArrivalsDepartures(icao);
 
-  const [arrivals, departures] = findArrivalsDepartures(icao);
+    const controllers = findControllers(icao);
 
-  const controllers = findControllers(icao);
+    const metar = await getMetar(icao);
 
-  const metar = await getMetar(icao);
+    return {
+      ...airportData,
+      data: {
+        arrivals,
+        departures,
+        controllers,
+        metar,
+      },
+    };
+  }
 
-  return {
-    ...airportData,
-    data: {
-      arrivals,
-      departures,
-      controllers,
-      metar,
-    },
-  };
+  return undefined;
 };
 
 export default airport;

@@ -1,4 +1,6 @@
+/* eslint-disable no-await-in-loop */
 import getAirport from "../db";
+import { getAirportByIata } from "../db/db";
 import { AllAirport } from "../types/airport";
 import Controller from "../types/controller";
 import Pilot from "../types/pilot";
@@ -10,34 +12,37 @@ const findArrivalsDepartures = (icao: string, pilots: Pilot[]) => {
   return [arrivals, departures];
 };
 
-const findControllers = (icao: string, controllers: Controller[]) =>
-  controllers.filter((controller) =>
-    controller.callsign.includes(icao) || controller.callsign.includes(icao.slice(1, 4)));
+const findAirports = async (controllers: Controller[], pilots: Pilot[]): Promise<AllAirport[]> => {
+  const airports: AllAirport[] = [];
 
-const findAirports = async (controllers: Controller[], pilots: Pilot[]) => {
-  const airports = await Promise.all(
-    controllers.map(async ({ callsign }): Promise<AllAirport> => {
-      let icao = callsign.split("_")[0];
-      if (callsign.split("_")[0].length === 3) {
-        icao = `K${callsign.split("_")[0]}`;
+  for (const controller of controllers) {
+    const station = controller.callsign.split("_")[0];
+    const airport = station.length === 4
+      ? await getAirport(station) : await getAirportByIata(station);
+
+    if (airport) {
+      const repeatedAirport = airports.find((ap) => ap.icao === airport.icao);
+
+      if (!repeatedAirport) {
+        const airportsControllers = controllers.filter((ctrl) => {
+          const split = ctrl.callsign.split("_")[0];
+
+          return split === airport.icao || split === airport.iata;
+        });
+
+        const [arrivals, departures] = findArrivalsDepartures(airport.icao, pilots);
+
+        airports.push({
+          ...airport,
+          data: {
+            arrivals,
+            departures,
+            controllers: airportsControllers,
+          },
+        });
       }
-
-      // eslint-disable-next-line no-await-in-loop
-      const airport = await getAirport(icao);
-      const [arrivals, departures] = findArrivalsDepartures(icao, pilots);
-
-      const onlineControllers = findControllers(icao, controllers);
-
-      return {
-        ...airport,
-        data: {
-          arrivals,
-          departures,
-          controllers: onlineControllers,
-        },
-      };
-    }),
-  );
+    }
+  }
 
   return airports;
 };
