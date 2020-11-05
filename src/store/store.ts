@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import * as sentry from "@sentry/node";
 
 import ApiResponse from "../types/api";
-import Pilot from "../types/pilot";
+import { Pilot } from "../types/pilot";
 import Controller from "../types/controller";
 import Stream from "../types/stream";
 import getStreams from "../data/twitch";
@@ -10,6 +10,7 @@ import Event, { EventCollection } from "../types/event";
 import Prefile from "../types/prefile";
 import { AllAirport } from "../types/airport";
 
+import pilots from "./pilots";
 import events from "./events";
 import airports from "./airports";
 
@@ -19,7 +20,7 @@ export interface Store {
   controllers: Controller[];
   streams: Stream[];
   events: EventCollection[];
-  airports: AllAirport [];
+  airports: AllAirport[];
 }
 
 const store: Store = {
@@ -38,10 +39,10 @@ const updateVolatileData = async () => {
     );
     const data: ApiResponse = await response.json();
     store.prefiles = data.prefiles;
-    store.pilots = data.pilots;
+    store.pilots = pilots(data.pilots);
     store.controllers = [...data.controllers, ...data.atis];
+    store.airports = await airports([...data.controllers, ...data.atis], store.pilots);
     store.streams = await getStreams();
-    store.airports = await airports([...data.controllers, ...data.atis], data.pilots);
   } catch (error) {
     sentry.captureException(error);
     console.log("Error updating Store", error);

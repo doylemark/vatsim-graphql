@@ -1,6 +1,6 @@
 import store from "../store";
 import Controller from "../types/controller";
-import Pilot from "../types/pilot";
+import { Pilot } from "../types/pilot";
 import Prefile from "../types/prefile";
 
 import findAll from "./findAll";

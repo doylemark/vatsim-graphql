@@ -1,6 +1,6 @@
 import Controller from "./controller";
 import Metar from "./metar";
-import Pilot from "./pilot";
+import { Pilot } from "./pilot";
 
 export default interface Airport {
   icao: string;

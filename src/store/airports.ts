@@ -3,7 +3,7 @@ import getAirport from "../db";
 import { getAirportByIata } from "../db/db";
 import { AllAirport } from "../types/airport";
 import Controller from "../types/controller";
-import Pilot from "../types/pilot";
+import { Pilot } from "../types/pilot";
 
 const findArrivalsDepartures = (icao: string, pilots: Pilot[]) => {
   const arrivals = pilots.filter((pilot) => pilot.flight_plan?.arrival === icao);
@@ -12,7 +12,9 @@ const findArrivalsDepartures = (icao: string, pilots: Pilot[]) => {
   return [arrivals, departures];
 };
 
-const findAirports = async (controllers: Controller[], pilots: Pilot[]): Promise<AllAirport[]> => {
+const findAirports = async (
+  controllers: Controller[], pilots: Pilot[],
+): Promise<AllAirport[]> => {
   const airports: AllAirport[] = [];
 
   for (const controller of controllers) {

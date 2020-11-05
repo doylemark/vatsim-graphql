@@ -1,6 +1,6 @@
 import Flightplan from "./flightplan";
 
-export default interface Pilot {
+export default interface RawPilot {
   cid: number;
   name: string;
   callsign: string;
@@ -16,4 +16,9 @@ export default interface Pilot {
   flight_plan: Flightplan;
   logon_time: string;
   last_updated: string;
+}
+
+export interface Pilot extends Omit<RawPilot, "latitude" | "longitude"> {
+  lat: number;
+  lon: number;
 }
