@@ -15,19 +15,15 @@ export default interface Airport {
   tz: string | null;
 }
 
-export interface SingleAirport extends Airport {
-  data: {
-    departures: Pilot[];
-    arrivals: Pilot[];
-    controllers: Controller[];
-    metar: Metar | null;
-  }
+export interface AllAirport extends Airport {
+  departures: Pilot[];
+  arrivals: Pilot[];
+  controllers: Controller[];
 }
 
-export interface AllAirport extends Airport {
-  data: {
-    departures: Pilot[];
-    arrivals: Pilot[];
-    controllers: Controller[];
-  }
+export interface SingleAirport extends Airport {
+  departures: Pilot[];
+  arrivals: Pilot[];
+  controllers: Controller[];
+  metar: Metar | null;
 }

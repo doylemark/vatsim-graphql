@@ -36,11 +36,9 @@ const findAirports = async (
 
         airports.push({
           ...airport,
-          data: {
-            arrivals,
-            departures,
-            controllers: airportsControllers,
-          },
+          arrivals,
+          departures,
+          controllers: airportsControllers,
         });
       }
     }

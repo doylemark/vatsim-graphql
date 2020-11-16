@@ -12,7 +12,9 @@ const airport = gql`
     lat: Float
     lon: Float
     tz: String
-    data: OnlineAirportData
+    departures: [Pilot]
+    arrivals: [Pilot]
+    controllers: [Controller]
   }
 
   type SingleAirport {
@@ -26,16 +28,6 @@ const airport = gql`
     lat: Float
     lon: Float
     tz: String
-    data: OnlineSingleAirportData
-  }
-
-  type OnlineAirportData {
-    departures: [Pilot]
-    arrivals: [Pilot]
-    controllers: [Controller]
-  }
-
-  type OnlineSingleAirportData {
     departures: [Pilot]
     arrivals: [Pilot]
     controllers: [Controller]

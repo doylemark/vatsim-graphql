@@ -26,12 +26,11 @@ const airport = async (_: null, {
 
     return {
       ...airportData,
-      data: {
-        arrivals,
-        departures,
-        controllers,
-        metar,
-      },
+      arrivals,
+      departures,
+      controllers,
+      metar,
+
     };
   }
 
