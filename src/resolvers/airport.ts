@@ -30,7 +30,6 @@ const airport = async (_: null, {
       departures,
       controllers,
       metar,
-
     };
   }
 

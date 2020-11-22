@@ -7,7 +7,17 @@ import airport from "./airport";
 import event from "./event";
 import metar from "./metar";
 import flightplan from "./flightplan";
+import history from "./history";
 
 export default [
-  query, pilot, controller, stream, airport, event, metar, prefile, flightplan, airport,
+  query,
+  pilot,
+  controller,
+  stream,
+  airport,
+  event, metar,
+  prefile,
+  flightplan,
+  airport,
+  history,
 ];

@@ -9,6 +9,8 @@ import getStreams from "../data/twitch";
 import Event, { EventCollection } from "../types/event";
 import Prefile from "../types/prefile";
 import { AllAirport } from "../types/airport";
+import History from "../types/history";
+import history from "../db/history";
 
 import pilots from "./pilots";
 import events from "./events";
@@ -21,6 +23,7 @@ export interface Store {
   streams: Stream[];
   events: EventCollection[];
   airports: AllAirport[];
+  history: History[];
 }
 
 const store: Store = {
@@ -30,6 +33,7 @@ const store: Store = {
   streams: [],
   events: [],
   airports: [],
+  history: [],
 };
 
 const updateVolatileData = async () => {
@@ -49,15 +53,10 @@ const updateVolatileData = async () => {
   }
 };
 
-interface EventsResponse {
-  data: Event[];
-}
-
 const updateData = async () => {
   try {
-    const response = await fetch("https://my.vatsim.net/api/events/all");
-    const { data }: EventsResponse = await response.json();
-    store.events = events(data);
+    store.events = await events();
+    store.history = await history(store.pilots, store.controllers);
   } catch (error) {
     sentry.captureException(error);
     console.log("Error updating non-volatile store data");
@@ -68,8 +67,8 @@ const updateData = async () => {
   updateData();
   updateVolatileData();
 
-  setInterval(async () => updateVolatileData(), 10000);
-  setInterval(async () => updateData(), 60000);
+  setInterval(async () => updateVolatileData(), 60000); // 1min
+  setInterval(async () => updateData(), 300000); // 5mins
 })();
 
 export default store;

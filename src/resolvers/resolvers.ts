@@ -16,6 +16,7 @@ export const controllers = () => findAll("controllers");
 export const streams = () => findAll("streams");
 export const events = () => findAll("events");
 export const airports = () => findAll("airports");
+export const history = () => findAll("history");
 
 export const prefile = (_: null, {
   callsign,

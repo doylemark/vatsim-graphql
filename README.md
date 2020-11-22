@@ -12,6 +12,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
+Server is live <a href="https://vatsim-graphql.xyz/">here</a>. It is not currently ready for use in production due to the speed the schema is evolving at.
 
 Example query:
 
@@ -42,7 +43,7 @@ git clone https://github.com/doylemark/vatsim-graphql && cd vatsim-graphl
 npm start
 ```
 
-Run Jest tests suite
+Run Jest tests suite (wip)
 ```
 npm run test
 ```

@@ -7,6 +7,7 @@ dotenv.config();
 
 export const db = monk(process.env.MONGO_URL || "");
 export const airports = db.get("vatsim-airports");
+export const history = db.get("history");
 
 export const getAirport = async (icao: string): Promise<Airport | undefined> => {
   const airport: Airport | undefined = await airports.findOne({ icao });

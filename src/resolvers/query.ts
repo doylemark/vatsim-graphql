@@ -9,6 +9,7 @@ import {
   streams,
   events,
   airports,
+  history,
 } from "./resolvers";
 
 const resolvers = {
@@ -23,6 +24,7 @@ const resolvers = {
     eventCalendar: events,
     airport,
     airports,
+    history,
   },
 };
 

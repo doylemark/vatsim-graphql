@@ -13,6 +13,7 @@ const query = gql`
     airports: [Airport]
     onlineAirports(icao: String!): [Airport]
     eventCalendar: [EventCollection]
+    history: [History]
   }
 `;
 

@@ -1,24 +1,35 @@
+import fetch from "node-fetch";
+
 import Event, { EventCollection } from "../types/event";
 
-const events = (evs: Event[]) => {
-  const filtered: EventCollection[] = [];
+interface EventsResponse {
+  data: Event[];
+}
 
-  for (const event of evs) {
-    const dateExists = filtered.findIndex((ev) => {
-      const existingCollectionDate = ev.date.slice(0, 10);
-      const eventDate = event.start_time.slice(0, 10);
+const events = async () => {
+  try {
+    const filtered: EventCollection[] = [];
+    const response = await fetch("https://my.vatsim.net/api/events/all");
+    const { data }: EventsResponse = await response.json();
 
-      return existingCollectionDate === eventDate;
-    });
+    for (const event of data) {
+      const dateExists = filtered.findIndex((ev) => {
+        const existingCollectionDate = ev.date.slice(0, 10);
+        const eventDate = event.start_time.slice(0, 10);
 
-    if (dateExists < 0) {
-      filtered.push({ date: event.start_time.slice(0, 10), data: [event] });
-    } else {
-      filtered[dateExists].data.push(event);
+        return existingCollectionDate === eventDate;
+      });
+
+      if (dateExists < 0) {
+        filtered.push({ date: event.start_time.slice(0, 10), data: [event] });
+      } else {
+        filtered[dateExists].data.push(event);
+      }
     }
+    return filtered;
+  } catch (error) {
+    throw new Error(error);
   }
-
-  return filtered;
 };
 
 export default events;
