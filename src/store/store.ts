@@ -6,7 +6,7 @@ import { Pilot } from "../types/pilot";
 import Controller from "../types/controller";
 import Stream from "../types/stream";
 import getStreams from "../data/twitch";
-import Event, { EventCollection } from "../types/event";
+import { EventCollection } from "../types/event";
 import Prefile from "../types/prefile";
 import { AllAirport } from "../types/airport";
 import History from "../types/history";
