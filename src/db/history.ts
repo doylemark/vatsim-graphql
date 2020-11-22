@@ -5,16 +5,22 @@ import { Pilot } from "../types/pilot";
 import { history } from "./db";
 
 export const setHistory = async (pilots: Pilot[], controllers: Controller[]) => {
-  const d = new Date().getSeconds() - 60 * 60 * 24; // 24hours ago
+  const currentDate = new Date().toUTCString();
+  const expireDate = new Date().setDate(new Date().getDate() - 1); // 24 hours ago
+
+  if (pilots.length === 0 || controllers.length === 0) {
+    return;
+  }
+
   const doc: History = {
-    date: new Date().getTime().toString(),
+    date: currentDate,
     controller_connections: controllers.length,
     pilot_connections: pilots.length,
     total_connections: pilots.length + controllers.length,
   };
 
   try {
-    await history.remove({ date: { $lt: d } });
+    await history.remove({ date: { $lt: expireDate } });
     await history.insert(doc);
   } catch (error) {
     throw new Error(error);
