@@ -41,6 +41,8 @@ const findAirports = async (
           controllers: airportsControllers,
         });
       }
+    } else {
+      console.log("Couldn't find airport:", station);
     }
   }
 
